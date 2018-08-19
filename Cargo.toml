@@ -22,10 +22,6 @@ bincode = "1.0"
 anymap = "0.12"
 slab = "0.4"
 stdweb = "0.4"
-toml = { version = "0.4", optional = true }
-serde_yaml = { version = "0.7", optional = true }
-rmp-serde = { version = "0.13.7", optional = true }
-serde_cbor = { version = "0.8.2", optional = true }
 
 [dev-dependencies]
 serde_derive = "1"
@@ -33,6 +29,4 @@ serde_derive = "1"
 [features]
 default = []
 web_test = []
-yaml = ["serde_yaml"]
-msgpack = ["rmp-serde"]
-cbor = ["serde_cbor"]
+

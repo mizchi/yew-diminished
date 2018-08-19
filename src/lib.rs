@@ -70,14 +70,6 @@ extern crate serde_json;
 extern crate slab;
 #[macro_use]
 extern crate stdweb;
-#[cfg(feature = "msgpack")]
-extern crate rmp_serde;
-#[cfg(feature = "cbor")]
-extern crate serde_cbor;
-#[cfg(feature = "yaml")]
-extern crate serde_yaml;
-#[cfg(feature = "toml")]
-extern crate toml;
 
 #[macro_use]
 pub mod macros;
