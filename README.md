@@ -1,3 +1,9 @@
+# Yew Diminished
+
+This is my folk to study rust and wasm-bindgen
+
+---
+
 [![Build Status](https://api.travis-ci.org/DenisKolodin/yew.svg)](https://travis-ci.org/DenisKolodin/yew)
 [![Gitter chat](https://badges.gitter.im/yewframework.png)](https://gitter.im/yewframework/Lobby "Gitter chat")
 
@@ -6,11 +12,11 @@
 Yew is a modern Rust framework inspired by Elm and ReactJS for
 creating multi-threaded frontend apps with WebAssembly.
 
-**NEW!** The framework supports ***multi-threading & concurrency*** out of the box.
+**NEW!** The framework supports **_multi-threading & concurrency_** out of the box.
 It uses [Web Workers API] to spawn actors (agents) in separate threads
 and uses a local scheduler attached to a thread for concurrent tasks.
 
-[Web Workers API]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
+[web workers api]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
 
 [Become a sponsor on Patreon](https://www.patreon.com/deniskolodin)
 
@@ -182,8 +188,8 @@ You can use as many agents as you want. For example you could separate all inter
 with a server to a separate thread (a real OS thread because Web Workers map to the native threads).
 
 > **REMEMBER!** Not every API is available for every environment. For example you can't use
-`StorageService` from a separate thread. It won't work with `Public` agents,
-only with `Job` and `Context` ones.
+> `StorageService` from a separate thread. It won't work with `Public` agents,
+> only with `Job` and `Context` ones.
 
 ### Components
 
@@ -201,8 +207,8 @@ html! {
 
 ### Scopes
 
-Components live in an Angular-like scopes with **parent-to-child** *(properties)* and
-**child-to-parent** *(events)* interaction.
+Components live in an Angular-like scopes with **parent-to-child** _(properties)_ and
+**child-to-parent** _(events)_ interaction.
 
 Properties are also pure Rust types with strict type-checking during the compilation.
 
@@ -298,12 +304,13 @@ JavaScript alerts, timeout, storage, fetches and websockets.
 It's a handy alternative to subscriptions.
 
 Implemented:
-* `IntervalService`
-* `TimeoutService`
-* `StorageService`
-* `DialogService`
-* `FetchService`
-* `WebSocketService`
+
+- `IntervalService`
+- `TimeoutService`
+- `StorageService`
+- `DialogService`
+- `FetchService`
+- `WebSocketService`
 
 ```rust
 use yew::services::{ConsoleService, TimeoutService};
