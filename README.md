@@ -1,6 +1,6 @@
 # Yew Diminished
 
-This is my folk to study rust and wasm-bindgen
+This is my folk to study rust and try to integrate wasm-bindgen, instead of stdweb.
 
 ---
 

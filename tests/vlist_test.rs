@@ -1,8 +1,8 @@
 #[macro_use]
-extern crate yew;
+extern crate yew_diminished;
 
-use yew::prelude::*;
-use yew::virtual_dom::VNode;
+use yew_diminished::prelude::*;
+use yew_diminished::virtual_dom::VNode;
 
 struct Comp;
 

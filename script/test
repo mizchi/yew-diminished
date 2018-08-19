@@ -1,0 +1,2 @@
+#!/bin/bash
+cargo web test --features web_test --target=wasm32-unknown-unknown --nodejs
