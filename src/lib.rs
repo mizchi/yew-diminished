@@ -62,12 +62,10 @@
 extern crate failure;
 #[macro_use]
 extern crate log;
-extern crate http;
-extern crate serde;
-#[macro_use]
-extern crate serde_derive;
 extern crate anymap;
 extern crate bincode;
+extern crate http;
+extern crate serde;
 extern crate serde_json;
 extern crate slab;
 #[macro_use]
@@ -83,10 +81,8 @@ extern crate toml;
 
 #[macro_use]
 pub mod macros;
-pub mod agent;
 pub mod app;
 pub mod callback;
-pub mod format;
 pub mod html;
 pub mod prelude;
 pub mod scheduler;
