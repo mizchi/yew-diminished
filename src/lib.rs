@@ -59,15 +59,8 @@
 #![deny(missing_docs)]
 #![recursion_limit = "512"]
 
-extern crate failure;
 #[macro_use]
 extern crate log;
-extern crate anymap;
-extern crate bincode;
-extern crate http;
-extern crate serde;
-extern crate serde_json;
-extern crate slab;
 #[macro_use]
 extern crate stdweb;
 
