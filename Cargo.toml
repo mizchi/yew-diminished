@@ -11,6 +11,9 @@ keywords = ["web", "asmjs", "webasm", "javascript"]
 categories = ["gui", "web-programming"]
 description = "A framework for making client-side single-page apps"
 
+[lib]
+crate-type = ["cdylib"]
+
 [dependencies]
 log = "0.4"
 stdweb = "0.4"

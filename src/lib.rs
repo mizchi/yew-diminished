@@ -62,12 +62,15 @@
 #[macro_use]
 extern crate log;
 #[macro_use]
+extern crate wasm_bindgen;
+#[macro_use]
 extern crate stdweb;
 
 #[macro_use]
 pub mod macros;
 pub mod app;
 pub mod callback;
+pub mod dom;
 pub mod html;
 pub mod prelude;
 pub mod scheduler;
@@ -75,6 +78,7 @@ pub mod virtual_dom;
 
 use std::cell::RefCell;
 use std::rc::Rc;
+use wasm_bindgen::prelude::wasm_bindgen;
 
 type Shared<T> = Rc<RefCell<T>>;
 
@@ -89,3 +93,6 @@ pub fn initialize() {
 pub fn run_loop() {
     stdweb::event_loop();
 }
+
+#[wasm_bindgen]
+struct X {}

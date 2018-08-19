@@ -1,14 +1,14 @@
 //! This module contains the implementation of a virtual component `VComp`.
 
+use super::{Reform, VDiff, VNode};
+use callback::Callback;
+use html::{Component, ComponentUpdate, NodeCell, Renderable, Scope};
 use std::any::TypeId;
 use std::cell::RefCell;
 use std::marker::PhantomData;
 use std::rc::Rc;
 use stdweb::unstable::TryInto;
 use stdweb::web::{document, Element, INode, Node};
-use html::{Component, ComponentUpdate, Scope, NodeCell, Renderable};
-use callback::Callback;
-use super::{Reform, VDiff, VNode};
 use Hidden;
 
 type AnyProps = (TypeId, *mut Hidden);
@@ -55,12 +55,7 @@ impl<COMP: Component> VComp<COMP> {
                 let scope: Scope<CHILD> = Scope::new();
                 let env = scope.clone();
                 *lazy_activator.borrow_mut() = Some(env);
-                scope.mount_in_place(
-                    element,
-                    opposite,
-                    Some(occupied.clone()),
-                    Some(props),
-                );
+                scope.mount_in_place(element, opposite, Some(occupied.clone()), Some(props));
                 // TODO Consider to send ComponentUpdate::Create after `mount_in_place` call
             }
         };
@@ -79,7 +74,8 @@ impl<COMP: Component> VComp<COMP> {
                 // Ignore update till properties changed
                 if previous_props != new_props {
                     let props = new_props.as_ref().unwrap().clone();
-                    lazy_activator.borrow_mut()
+                    lazy_activator
+                        .borrow_mut()
                         .as_mut()
                         .expect("activator for child scope was not set (blind sender)")
                         .send(ComponentUpdate::Properties(props));
@@ -90,7 +86,8 @@ impl<COMP: Component> VComp<COMP> {
         let destroyer = {
             let lazy_activator = lazy_activator;
             move || {
-                lazy_activator.borrow_mut()
+                lazy_activator
+                    .borrow_mut()
                     .as_mut()
                     .expect("activator for child scope was not set (destroyer)")
                     .send(ComponentUpdate::Destroy);
@@ -199,12 +196,7 @@ where
     COMP: Component + 'static,
 {
     /// This methods mount a virtual component with a generator created with `lazy` call.
-    fn mount<T: INode>(
-        &mut self,
-        parent: &T,
-        opposite: Option<Node>,
-        props: AnyProps,
-    ) {
+    fn mount<T: INode>(&mut self, parent: &T, opposite: Option<Node>, props: AnyProps) {
         let element: Element = parent
             .as_node()
             .as_ref()
@@ -230,7 +222,7 @@ where
         // Destroy the loop. It's impossible to use `Drop`,
         // because parts can be reused with `grab_sender_of`.
         (self.destroyer)(); // TODO Chech it works
-        // Keep the sibling in the cell and send a message `Drop` to a loop
+                            // Keep the sibling in the cell and send a message `Drop` to a loop
         self.cell.borrow_mut().take().and_then(|node| {
             let sibling = node.next_sibling();
             parent
