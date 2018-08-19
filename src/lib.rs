@@ -11,15 +11,15 @@
 //! #[macro_use]
 //! extern crate yew;
 //! use yew::prelude::*;
-//! 
+//!
 //! struct Model {
 //!     value: i64,
 //! }
-//! 
+//!
 //! enum Msg {
 //!     DoIt,
 //! }
-//! 
+//!
 //! impl Component for Model {
 //!     type Message = Msg;
 //!     type Properties = ();
@@ -28,7 +28,7 @@
 //!             value: 0,
 //!         }
 //!     }
-//! 
+//!
 //!     fn update(&mut self, msg: Self::Message) -> ShouldRender {
 //!         match msg {
 //!             Msg::DoIt => self.value = self.value + 1
@@ -36,7 +36,7 @@
 //!         true
 //!     }
 //! }
-//! 
+//!
 //! impl Renderable<Model> for Model {
 //!     fn view(&self) -> Html<Self> {
 //!         html! {
@@ -47,7 +47,7 @@
 //!         }
 //!     }
 //! }
-//! 
+//!
 //! fn main() {
 //!     yew::initialize();
 //!     App::<Model>::new().mount_to_body();
@@ -59,7 +59,6 @@
 #![deny(missing_docs)]
 #![recursion_limit = "512"]
 
-#[macro_use]
 extern crate failure;
 #[macro_use]
 extern crate log;
@@ -67,35 +66,34 @@ extern crate http;
 extern crate serde;
 #[macro_use]
 extern crate serde_derive;
-extern crate serde_json;
-extern crate bincode;
 extern crate anymap;
+extern crate bincode;
+extern crate serde_json;
 extern crate slab;
 #[macro_use]
 extern crate stdweb;
-#[cfg(feature = "toml")]
-extern crate toml;
-#[cfg(feature = "yaml")]
-extern crate serde_yaml;
 #[cfg(feature = "msgpack")]
 extern crate rmp_serde;
 #[cfg(feature = "cbor")]
 extern crate serde_cbor;
+#[cfg(feature = "yaml")]
+extern crate serde_yaml;
+#[cfg(feature = "toml")]
+extern crate toml;
 
 #[macro_use]
 pub mod macros;
+pub mod agent;
+pub mod app;
+pub mod callback;
 pub mod format;
 pub mod html;
-pub mod app;
 pub mod prelude;
-pub mod services;
-pub mod virtual_dom;
-pub mod callback;
 pub mod scheduler;
-pub mod agent;
+pub mod virtual_dom;
 
-use std::rc::Rc;
 use std::cell::RefCell;
+use std::rc::Rc;
 
 type Shared<T> = Rc<RefCell<T>>;
 
